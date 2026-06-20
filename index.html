@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technology Delivery Leader</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #080E1C;
+    --navy-mid: #111827;
+    --navy-card: #161F30;
+    --navy-border: #1E2D45;
+    --accent: #6366F1;
+    --accent-light: #818CF8;
+    --accent-dim: rgba(99,102,241,0.15);
+    --text-primary: #E8EDF5;
+    --text-secondary: #8899AA;
+    --text-muted: #4A5A6A;
+    --accent-blue: #2D6FD4;
+    --accent-blue-dim: rgba(45,111,212,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(8,14,28,0.93);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--navy-border);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    transition: color 0.2s;
+    text-transform: uppercase;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    padding: 140px 2rem 100px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+  }
+
+  .hero-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.4rem, 4vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 0.6rem;
+  }
+
+  .hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    font-weight: 400;
+    color: var(--accent-light);
+    margin-bottom: 1.8rem;
+    line-height: 1.4;
+    min-height: 1.8em;
+  }
+
+  .hero-summary {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.85;
+    max-width: 490px;
+  }
+
+  .hero-summary strong {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .hero-cta {
+    margin-top: 2.2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--navy);
+    border: none;
+    padding: 0.65rem 1.6rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.65rem 1.6rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    display: inline-block;
+  }
+
+  .btn-outline:hover { background: var(--accent-dim); }
+
+  /* HERO STATS */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--navy-border);
+    border: 1px solid var(--navy-border);
+  }
+
+  .stat-cell {
+    background: var(--navy-card);
+    padding: 1.5rem 1.4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-cell::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .stat-cell:hover::after { opacity: 1; }
+
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  .stat-detail {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 0.35rem;
+    line-height: 1.4;
+  }
+
+  hr.section-divider {
+    border: none;
+    border-top: 1px solid var(--navy-border);
+    margin: 0;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--text-secondary);
+    font-size: 14.5px;
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+
+  .about-text p strong {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .about-text p:last-child { margin-bottom: 0; }
+
+  .about-pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .pillar-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-left: 2px solid #A78BFA;
+    padding: 1.1rem 1.2rem;
+  }
+
+  .pillar-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+  }
+
+  .pillar-desc {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  /* SECTIONS */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-tag {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    border: 1px solid var(--accent-dim);
+    padding: 0.25rem 0.7rem;
+    white-space: nowrap;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.65rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--navy-border);
+  }
+
+  /* EXPERIENCE */
+  .experience-item {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 2rem;
+    padding: 2.2rem 0;
+    border-bottom: 1px solid var(--navy-border);
+  }
+
+  .experience-item:last-child { border-bottom: none; }
+
+  .exp-period {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .exp-location {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 0.7rem;
+  }
+
+  .exp-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    font-weight: 600;
+  }
+
+  .badge-tech { background: var(--accent-blue-dim); color: #6BA3E8; border: 1px solid rgba(45,111,212,0.25); }
+  .badge-data { background: rgba(45,180,130,0.1); color: #45C49A; border: 1px solid rgba(45,180,130,0.2); }
+  .badge-gis  { background: rgba(180,100,210,0.1); color: #C47AE8; border: 1px solid rgba(180,100,210,0.2); }
+  .badge-ops  { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(201,168,76,0.25); }
+
+  .exp-role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+  }
+
+  .exp-company {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .exp-bullets li {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .exp-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 10px;
+    top: 0.35rem;
+  }
+
+  .exp-bullets li strong {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--navy-border);
+    border: 1px solid var(--navy-border);
+    margin-top: 1.3rem;
+  }
+
+  .impact-cell {
+    background: var(--navy-card);
+    padding: 0.85rem 0.7rem;
+    text-align: center;
+  }
+
+  .impact-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .impact-desc {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.25rem;
+    line-height: 1.3;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skill-block {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    padding: 1.4rem 1.3rem;
+    transition: border-color 0.2s;
+  }
+
+  .skill-block:hover { border-color: rgba(201,168,76,0.4); }
+
+  .skill-block-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--navy-border);
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .skill-tag {
+    font-size: 12px;
+    color: var(--text-secondary);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--navy-border);
+    padding: 0.25rem 0.65rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .skill-tag:hover { border-color: var(--text-muted); color: var(--text-primary); }
+
+  /* EDUCATION */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .edu-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .edu-degree {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+  }
+
+  .edu-school {
+    font-size: 13px;
+    color: var(--accent-light);
+    margin-bottom: 0.2rem;
+    font-weight: 500;
+  }
+
+  .edu-period {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .cert-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .cert-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-left: 2px solid transparent;
+    transition: border-left-color 0.2s;
+  }
+
+  .cert-item:hover { border-left-color: var(--accent); }
+
+  .cert-year {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-top: 0.1rem;
+    min-width: 52px;
+  }
+
+  .cert-name {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .cert-name strong {
+    display: block;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 13px;
+    margin-bottom: 0.15rem;
+  }
+
+  .lang-row {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .lang-item { display: flex; flex-direction: column; gap: 0.2rem; }
+
+  .lang-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .lang-level {
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  /* CONTACT */
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-intro {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+
+  .contact-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 1rem;
+    line-height: 1.6;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-group label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    color: var(--text-primary);
+    padding: 0.7rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .form-group select option { background: var(--navy-card); }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--accent); }
+
+  .form-group textarea { resize: vertical; min-height: 110px; }
+
+  .form-submit {
+    background: var(--accent);
+    color: var(--navy);
+    border: none;
+    padding: 0.8rem 2rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    align-self: flex-start;
+  }
+
+  .form-submit:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+  .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  .form-message {
+    font-size: 13px;
+    padding: 0.7rem 1rem;
+    display: none;
+    line-height: 1.5;
+  }
+
+  .form-message.success { background: rgba(45,180,130,0.1); color: #45C49A; border: 1px solid rgba(45,180,130,0.2); }
+  .form-message.error   { background: rgba(220,60,60,0.1);  color: #E07070; border: 1px solid rgba(220,60,60,0.2); }
+
+  .linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 13px;
+    text-decoration: none;
+    border: 1px solid var(--navy-border);
+    padding: 0.5rem 1rem;
+    transition: border-color 0.2s, color 0.2s;
+    margin-top: 1rem;
+  }
+
+  .linkedin-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  footer {
+    border-top: 1px solid var(--navy-border);
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+
+  #typewriter {
+    border-right: 2px solid var(--accent);
+    animation: blink 0.85s step-end infinite;
+  }
+
+  @keyframes blink { 50% { border-color: transparent; } }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 110px 1.2rem 60px; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .experience-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .impact-grid { grid-template-columns: repeat(3, 1fr); }
+    .skills-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+    section { padding: 3rem 1.2rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <!-- CambiaAqui: Iniciales o nombre corto en la barra de navegación -->
+  <span class="nav-brand">• A H C V •</span>
+  <ul class="nav-links">
+    <li><a href="#about" data-en="About" data-es="Perfil">About</a></li>
+    <li><a href="#experience" data-en="Experience" data-es="Experiencia">Experience</a></li>
+    <li><a href="#skills" data-en="Skills" data-es="Habilidades">Skills</a></li>
+    <li><a href="#education" data-en="Education" data-es="Educación">Education</a></li>
+    <li><a href="#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
+  </ul>
+  <button id="langBtn" onclick="toggleLang()" style="background:transparent;border:1px solid var(--accent);color:var(--accent);padding:0.3rem 0.9rem;font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:background 0.2s,color 0.2s;">EN / ES</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <p class="hero-eyebrow" data-en="Technology Delivery Leader" data-es="Líder en Entrega Tecnológica">Technology Delivery Leader</p>
+    <!-- CambiaAqui: Tu nombre completo en el hero -->
+    <h1 class="hero-name"> Haydeé <br> Corona </h1>
+    <p class="hero-title"><span id="typewriter"></span></p>
+    <p class="hero-summary">
+      Technology Delivery Leader with <strong>8+ years</strong> connecting business and technology across <strong>fintech, banking, and geospatial systems</strong>. I lead multidisciplinary teams through the full SDLC — from requirements to deployment and maintenance — delivering solutions that generate measurable efficiency and <strong>sustainable business value</strong>. Currently seeking senior remote roles in <strong>fintech, govtech, or consulting</strong>.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get in touch</a>
+      <a href="#experience" class="btn-outline">View experience</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-cell">
+      <div class="stat-num">8+</div>
+      <div class="stat-label">Years delivering tech</div>
+      <div class="stat-detail">Fintech, banking, GIS & gov</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">~50%</div>
+      <div class="stat-label">Faster forecasting</div>
+      <div class="stat-detail">ATM cash replenishment cycle cut in half</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">5→3</div>
+      <div class="stat-label">Months to delivery</div>
+      <div class="stat-detail">Project cycle accelerated from 5 months to 3</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">+40%</div>
+      <div class="stat-label">Team synergy</div>
+      <div class="stat-detail">Cross-functional cohesion uplift</div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-tag" data-en="Profile" data-es="Perfil">Profile</span>
+    <h2 class="section-title" data-en="About" data-es="Acerca de mí">About</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I am a Technology Delivery Leader focused on <strong>Business & Digital Transformation</strong> and <strong>Operational Excellence</strong>, with more than 8 years of experience connecting business and technology. Specialized in <strong>fintech and banking</strong>, I lead multidisciplinary teams to deliver end-to-end projects through the full SDLC — from requirements gathering and design, through development, testing, and deployment, to ongoing maintenance.
+      </p>
+      <p>
+        In recent fintech and ATM portal projects, my teams achieved: <strong>50% reduction in forecast generation time</strong>, doubled cash-runout anticipation from 2 to 4 days, <strong>70% fewer service report errors</strong>, 40% improvement in device installation tracking, and project delivery accelerated from 4–5 months to <strong>3 months</strong>.
+      </p>
+      <p>
+        My technical foundation as a <strong>PostgreSQL DBA</strong> in banking environments and as a <strong>GIS developer</strong> for government projects gives me the credibility to engage deeply with engineering teams while maintaining strategic alignment with executive stakeholders. I manage budgets of MXN 80K–120K/month, resource planning, cost control, and vendor communication with equal confidence.
+      </p>
+      <p>
+        I lead with ethics, respect, and responsibility — building the trust and synergy that transforms vision into strategy. Currently seeking <strong>senior remote roles in fintech, govtech, or consulting</strong> where technology delivery creates lasting organizational value.
+      </p>
+    </div>
+    <div class="about-pillars">
+      <div class="pillar-card">
+        <div class="pillar-title">End-to-End SDLC Ownership</div>
+        <div class="pillar-desc">Requirements gathering → design → development → QA → deployment → maintenance. Full lifecycle accountability from day one to go-live and beyond.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-title">Business–Technology Translation</div>
+        <div class="pillar-desc">Converting ambiguous business needs into precise technical specifications — reducing rework, accelerating delivery, and ensuring solutions meet real user needs.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-title">Operational Excellence & Data Governance</div>
+        <div class="pillar-desc">Driving process automation, KPI frameworks, and data quality initiatives that reduce errors, improve traceability, and enable data-driven decisions.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-title">Executive Stakeholder Management</div>
+        <div class="pillar-desc">Structured reporting, risk communication, and scope control that keep leadership informed and projects on track — even through change.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-tag" data-en="Career" data-es="Trayectoria">Career</span>
+    <h2 class="section-title" data-en="Professional Experience" data-es="Experiencia Profesional">Professional Experience</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- Role 1 -->
+  <div class="experience-item">
+    <div>
+      <div class="exp-period" data-en="Jan 2026 – Apr 2026" data-es="Ene 2026 – Abr 2026">Jan 2026 – Apr 2026</div>
+      <div class="exp-location">Remote · México</div>
+      <span class="exp-badge badge-tech">Fintech</span>
+    </div>
+    <div>
+      <div class="exp-role" data-en="Tech Project Manager / Project Lead" data-es="Project Manager / Líder de Proyecto Tecnológico">Tech Project Manager / Project Lead</div>
+      <div class="exp-company" data-en="Fintech &amp; ATM Portals — 3 Concurrent Digital Products" data-es="Portales Fintech y ATM — 3 Productos Digitales Simultáneos">Fintech &amp; ATM Portals — 3 Concurrent Digital Products</div>
+      <ul class="exp-bullets">
+        <li data-en="Owned end-to-end delivery of <strong>3 concurrent fintech portals</strong> (25–50+ users each, MXN 80K–120K/month), coordinating cross-functional engineering, QA, and business teams across the full SDLC — requirements through go-live." data-es="Lideré la entrega end-to-end de <strong>3 portales fintech simultáneos</strong> (25–50+ usuarios c/u, MXN 80K–120K/mes), coordinando equipos multidisciplinarios de ingeniería, QA y negocio a lo largo del SDLC completo — desde requerimientos hasta go-live.">Owned end-to-end delivery of <strong>3 concurrent fintech portals</strong> (25–50+ users each, MXN 100K /month), coordinating cross-functional engineering, QA, and business teams across the full SDLC — requirements through go-live.</li>
+        <li data-en="Translated ambiguous client business needs into structured technical specifications and actionable sprint deliverables, <strong>accelerating project cycle from 5 months to 3 months</strong> while maintaining quality standards." data-es="Traduje necesidades de negocio ambiguas en especificaciones técnicas estructuradas y entregables de sprint accionables, <strong>acelerando el ciclo de entrega de 5 meses a 3 meses</strong> sin comprometer los estándares de calidad.">Translated ambiguous client business needs into structured technical specifications and actionable sprint deliverables, <strong>accelerating project cycle from 5 months to 3 months</strong> while maintaining quality standards.</li>
+        <li data-en="Increased cross-functional team synergy by <strong>~40%</strong> through structured communication protocols, daily standups, and stakeholder alignment rituals that eliminated bottlenecks and decision paralysis." data-es="Incrementé la sinergia interfuncional en <strong>~40%</strong> mediante protocolos de comunicación estructurados, standups diarios y rituales de alineación con stakeholders que eliminaron cuellos de botella y parálisis de decisión.">Increased cross-functional team synergy by <strong>~40%</strong> through structured communication protocols, daily standups, and stakeholder alignment rituals that eliminated bottlenecks and decision paralysis.</li>
+        <li data-en="Implemented proactive scope change control and continuous executive reporting, preventing scope creep and ensuring full client visibility into progress, risks, and next steps." data-es="Implementé control proactivo de cambios de alcance y reporteo ejecutivo continuo, previniendo el scope creep y garantizando visibilidad total del cliente sobre avance, riesgos y próximos pasos.">Implemented proactive scope change control and continuous executive reporting, preventing scope creep and ensuring full client visibility into progress, risks, and next steps.</li>
+        <li data-en="Designed UI/UX mockups to validate requirements pre-development, securing client approval early and eliminating rework cycles — contributing to <strong>zero critical defects at go-live</strong>." data-es="Diseñé mockups UI/UX para validar requerimientos antes del desarrollo, asegurando aprobación anticipada del cliente y eliminando ciclos de retrabajo — logrando <strong>cero defectos críticos en go-live</strong>.">Designed UI/UX mockups to validate requirements pre-development, securing client approval early and eliminating rework cycles — contributing to <strong>zero critical defects at go-live</strong>.</li>
+        <li data-en="Coordinated QA validation cycles: reviewed user manuals, logged and tracked defect resolution, and ensured all portals met business acceptance criteria before launch." data-es="Coordiné ciclos de validación QA: revisé manuales de usuario, registré y rastreé la resolución de defectos, y aseguré que todos los portales cumplieran los criterios de aceptación de negocio antes del lanzamiento.">Coordinated QA validation cycles: reviewed user manuals, logged and tracked defect resolution, and ensured all portals met business acceptance criteria before launch.</li>
+      </ul>
+      <div class="impact-grid">
+        <div class="impact-cell">
+          <div class="impact-num">~40%</div>
+          <div class="impact-desc" data-en="Device install<br>tracking uplift" data-es="Mejora en<br>rastreo de dispositivos">Device install<br>tracking uplift</div>
+        </div>
+        <div class="impact-cell">
+          <div class="impact-num">~50%</div>
+          <div class="impact-desc" data-en="Forecast<br>time reduced" data-es="Tiempo de<br>pronóstico reducido">Forecast<br>time reduced</div>
+        </div>
+        <div class="impact-cell">
+          <div class="impact-num">2→4 days</div>
+          <div class="impact-desc" data-en="Cash runout<br>anticipation" data-es="Anticipación de<br>desabasto de efectivo">Cash runout<br>anticipation</div>
+        </div>
+        <div class="impact-cell">
+          <div class="impact-num">~70%</div>
+          <div class="impact-desc" data-en="Service report<br>errors reduced" data-es="Reducción de<br>errores en reportes">Service report<br>errors reduced</div>
+        </div>
+        <div class="impact-cell">
+          <div class="impact-num">+40%</div>
+          <div class="impact-desc" data-en="Team<br>synergy" data-es="Sinergia<br>de equipo">Team<br>synergy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Role 2 -->
+  <div class="experience-item">
+    <div>
+      <div class="exp-period">2023 – 2025</div>
+      <div class="exp-location">Remote · México</div>
+      <span class="exp-badge badge-ops">PMO</span>
+    </div>
+    <div>
+      <div class="exp-role" data-en="Project Coordinator / Project Manager" data-es="Coordinadora de Proyectos / Project Manager">Project Coordinator / Project Manager</div>
+      <div class="exp-company" data-en="Technology Delivery — Multi-sector" data-es="Entrega Tecnológica — Multisector">Technology Delivery — Multi-sector</div>
+      <ul class="exp-bullets">
+        <li data-en="Coordinated cross-functional delivery teams across multiple simultaneous projects, maintaining timeline alignment, deliverable traceability, and client expectation management throughout the full project lifecycle." data-es="Coordiné equipos de entrega interfuncionales en múltiples proyectos simultáneos, manteniendo alineación de cronogramas, trazabilidad de entregables y gestión de expectativas del cliente durante el ciclo de vida completo del proyecto.">Coordinated cross-functional delivery teams across multiple simultaneous projects, maintaining timeline alignment, deliverable traceability, and client expectation management throughout the full project lifecycle.</li>
+        <li data-en="Implemented early-warning scope change monitoring, proactively communicating impact assessments to stakeholders and preventing schedule delays and budget overruns." data-es="Implementé monitoreo de alerta temprana de cambios de alcance, comunicando proactivamente evaluaciones de impacto a stakeholders y previniendo retrasos en cronograma y sobrecostos.">Implemented early-warning scope change monitoring, proactively communicating impact assessments to stakeholders and preventing schedule delays and budget overruns.</li>
+        <li data-en="Produced structured project documentation, risk registers, and concise executive status reports — giving C-level leadership and client sponsors clear visibility into progress, risks, and mitigation actions." data-es="Produje documentación estructurada de proyectos, registros de riesgos y reportes ejecutivos concisos — brindando a la dirección C-level y patrocinadores del cliente visibilidad clara sobre avance, riesgos y acciones de mitigación.">Produced structured project documentation, risk registers, and concise executive status reports — giving C-level leadership and client sponsors clear visibility into progress, risks, and mitigation actions.</li>
+        <li data-en="Led real-time issue resolution during project launches, coordinating technical and business teams to resolve blockers and minimize go-live disruptions." data-es="Lideré la resolución de incidencias en tiempo real durante lanzamientos de proyectos, coordinando equipos técnicos y de negocio para resolver bloqueos y minimizar disrupciones en go-live.">Led real-time issue resolution during project launches, coordinating technical and business teams to resolve blockers and minimize go-live disruptions.</li>
+        <li data-en="Enforced delivery traceability against client SLAs and quality standards, ensuring 100% requirement compliance at formal acceptance milestones." data-es="Garanticé la trazabilidad de entrega contra SLAs del cliente y estándares de calidad, asegurando 100% de cumplimiento de requerimientos en hitos formales de aceptación.">Enforced delivery traceability against client SLAs and quality standards, ensuring 100% requirement compliance at formal acceptance milestones.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Role 3 -->
+  <div class="experience-item">
+    <div>
+      <div class="exp-period">2021 – 2022</div>
+      <div class="exp-location">Remote · México</div>
+      <span class="exp-badge badge-data" data-en="Banking" data-es="Banca">Banking</span>
+    </div>
+    <div>
+      <div class="exp-role" data-en="Database Administrator — PostgreSQL" data-es="Administradora de Bases de Datos — PostgreSQL">Database Administrator — PostgreSQL</div>
+      <div class="exp-company" data-en="Banking &amp; ATM Systems — High-Availability Environments" data-es="Sistemas Bancarios y ATM — Entornos de Alta Disponibilidad">Banking &amp; ATM Systems — High-Availability Environments</div>
+      <ul class="exp-bullets">
+        <li data-en="Architected and optimized <strong>PostgreSQL database instances</strong>, schemas, and stored procedures powering mission-critical banking portals and ATM inventory tracking systems." data-es="Diseñé y optimicé <strong>instancias de bases de datos PostgreSQL</strong>, esquemas y procedimientos almacenados que potencian portales bancarios de misión crítica y sistemas de rastreo de inventario ATM.">Architected and optimized <strong>PostgreSQL database instances</strong>, schemas, and stored procedures powering mission-critical banking portals and ATM inventory tracking systems.</li>
+        <li data-en="Implemented enterprise-grade data security: encryption, role-based access controls, and audit trails ensuring full compliance with banking data integrity and regulatory standards." data-es="Implementé seguridad de datos de nivel empresarial: cifrado, controles de acceso por roles y pistas de auditoría que garantizan cumplimiento total con estándares de integridad de datos bancarios y regulatorios.">Implemented enterprise-grade data security: encryption, role-based access controls, and audit trails ensuring full compliance with banking data integrity and regulatory standards.</li>
+        <li data-en="Engineered automated backup, recovery, and performance-monitoring routines, maintaining <strong>99.9%+ service continuity</strong> and minimizing unplanned downtime for core banking operations." data-es="Diseñé rutinas automatizadas de respaldo, recuperación y monitoreo de rendimiento, manteniendo <strong>99.9%+ de continuidad de servicio</strong> y minimizando el tiempo de inactividad no planificado en operaciones bancarias core.">Engineered automated backup, recovery, and performance-monitoring routines, maintaining <strong>99.9%+ service continuity</strong> and minimizing unplanned downtime for core banking operations.</li>
+        <li data-en="Led continuous anomaly detection and performance tuning, proactively resolving bottlenecks before impacting end-users or SLA commitments — building the technical credibility that now underpins my delivery leadership approach." data-es="Lideré detección continua de anomalías y ajuste de rendimiento, resolviendo proactivamente cuellos de botella antes de impactar a usuarios finales o compromisos de SLA — consolidando la credibilidad técnica que sustenta hoy mi liderazgo en entrega.">Led continuous anomaly detection and performance tuning, proactively resolving bottlenecks before impacting end-users or SLA commitments — building the technical credibility that now underpins my delivery leadership approach.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Role 4 -->
+  <div class="experience-item">
+    <div>
+      <div class="exp-period">2019 – 2021</div>
+      <div class="exp-location">Tulum · México</div>
+      <span class="exp-badge badge-gis">GIS · Gov</span>
+    </div>
+    <div>
+      <div class="exp-role" data-en="Cadastral Project Consultant / GIS Consultant" data-es="Consultora de Proyectos Catastrales / Consultora GIS">Cadastral Project Consultant / GIS Consultant</div>
+      <div class="exp-company" data-en="Municipality of Tulum — Digital Government Transformation" data-es="Municipio de Tulum — Transformación Digital de Gobierno">Municipality of Tulum — Digital Government Transformation</div>
+      <ul class="exp-bullets">
+        <li data-en="Conducted SWOT-driven process analysis identifying automation opportunities in cadastral workflows, reducing average service turnaround time by <strong>~20%</strong> through targeted digitization initiatives." data-es="Realicé análisis de procesos basado en FODA para identificar oportunidades de automatización en flujos catastrales, reduciendo el tiempo promedio de atención en <strong>~20%</strong> mediante iniciativas de digitalización focalizadas.">Conducted SWOT-driven process analysis identifying automation opportunities in cadastral workflows, reducing average service turnaround time by <strong>~20%</strong> through targeted digitization initiatives.</li>
+        <li data-en="Led data governance initiative: cleaned, linked, and validated cadastral records against cartographic maps, improving spatial database accuracy and ensuring regulatory compliance across municipal land records." data-es="Lideré iniciativa de gobernanza de datos: limpié, vinculé y validé registros catastrales contra mapas cartográficos, mejorando la precisión de la base de datos espacial y asegurando el cumplimiento normativo en registros de tierra municipales.">Led data governance initiative: cleaned, linked, and validated cadastral records against cartographic maps, improving spatial database accuracy and ensuring regulatory compliance across municipal land records.</li>
+        <li data-en="Designed and delivered a municipal capability-building program enabling self-sufficient system operation — directly contributing to a <strong>~30% increase in tax revenue collection</strong> in Tulum through improved data accuracy and process control." data-es="Diseñé y ejecuté un programa de fortalecimiento de capacidades municipales que habilitó la operación autosuficiente del sistema — contribuyendo directamente a un <strong>~30% de incremento en la recaudación fiscal</strong> en Tulum mediante mayor precisión de datos y control de procesos.">Designed and delivered a municipal capability-building program enabling self-sufficient system operation — directly contributing to a <strong>~30% increase in tax revenue collection</strong> in Tulum through improved data accuracy and process control.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Role 5 -->
+  <div class="experience-item">
+    <div>
+      <div class="exp-period">2011 – 2019</div>
+      <div class="exp-location">Remote · México</div>
+      <span class="exp-badge badge-gis">GIS · Tech</span>
+    </div>
+    <div>
+      <div class="exp-role" data-en="GeoBusiness Intelligence / GIS Project Consultant" data-es="Consultoría GIS / Inteligencia de Negocio Geoespacial">GeoBusiness Intelligence / GIS Project Consultant</div>
+      <div class="exp-company" data-en="Geospatial Technology Practice — Public &amp; Private Sector" data-es="Práctica de Tecnología Geoespacial — Sector Público y Privado">Geospatial Technology Practice — Public &amp; Private Sector</div>
+      <ul class="exp-bullets">
+        <li data-en="Led multidisciplinary technical teams delivering geospatial automation and business intelligence projects for public and private sector clients using Agile and Waterfall methodologies." data-es="Lideré equipos técnicos multidisciplinarios en la entrega de proyectos de automatización geoespacial e inteligencia de negocio para clientes del sector público y privado, aplicando metodologías Agile y Waterfall.">Led multidisciplinary technical teams delivering geospatial automation and business intelligence projects for public and private sector clients using Agile and Waterfall methodologies.</li>
+        <li data-en="Engineered modular GIS toolsets for topographic, bathymetric, and cartographic analysis — solutions adopted as standard tooling across multiple client organizations, demonstrating scalable and reusable delivery." data-es="Desarrollé toolsets GIS modulares para análisis topográfico, batimétrico y cartográfico — soluciones adoptadas como herramientas estándar en múltiples organizaciones cliente, demostrando entrega escalable y reutilizable.">Engineered modular GIS toolsets for topographic, bathymetric, and cartographic analysis — solutions adopted as standard tooling across multiple client organizations, demonstrating scalable and reusable delivery.</li>
+        <li data-en="Designed and executed role-based change management and training programs, achieving smooth technology adoption with minimal operational disruption across diverse stakeholder groups." data-es="Diseñé y ejecuté programas de gestión del cambio y capacitación basados en roles, logrando adopción tecnológica fluida con mínima disrupción operativa en grupos de stakeholders diversos.">Designed and executed role-based change management and training programs, achieving smooth technology adoption with minimal operational disruption across diverse stakeholder groups.</li>
+        <li data-en="Represented Mexico's Geographic Information System at national and international conferences, positioning the organization as a regional technology authority and expanding its public-sector client base." data-es="Representé el Sistema de Información Geográfica de México en conferencias nacionales e internacionales, posicionando a la organización como autoridad tecnológica regional y expandiendo su base de clientes del sector público.">Represented Mexico's Geographic Information System at national and international conferences, positioning the organization as a regional technology authority and expanding its public-sector client base.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Earlier -->
+  <div class="experience-item">
+    <div>
+      <div class="exp-period">2008 – 2011</div>
+      <div class="exp-location">México</div>
+      <span class="exp-badge badge-ops" data-en="Early Career" data-es="Inicio de Carrera">Early Career</span>
+    </div>
+    <div>
+      <div class="exp-role" data-en="Technical &amp; Data Roles — Condensed" data-es="Roles Técnicos y de Datos — Resumen">Technical &amp; Data Roles — Condensed</div>
+      <div class="exp-company">Public Sectors: Oil and Administrative Justice · Gaming Systems · Cadcorp GIS · Private Internatonal Enterprises</div>
+      <ul class="exp-bullets">
+        <li data-en="<strong>Technical Analyst / Automation Specialist (Public Sectors Oil and Administrative Justice):</strong> Developed VBA automation tools for Oil Public Sectors upstream operations; optimized judicial sub-processes at Mexico's Administrative Justice; supported regulatory compliance and audit preparation workflows." data-es="<strong>Analista Técnica / Especialista en Automatización:</strong> Desarrollé herramientas de automatización VBA para operaciones del sector público en hidrocarburos; optimicé sub-procesos judiciales en la Suprema Corte de Justicia Administrativa; apoyé cumplimiento normativo y flujos de preparación de auditorías."><strong>Technical Analyst / Automation Specialist :</strong> Developed VBA automation tools for Oil Public Sectors upstream operations; optimized judicial sub-processes at Mexico's Administrative Court; supported regulatory compliance and audit preparation workflows.</li>
+        <li data-en="<strong>Games Systems Data Analyst:</strong> Managed MS SQL databases for probability models and game projections; led controlled system testing and supervised secure operations for gaming equipment across national store network." data-es="<strong>Analista de Datos — Sistemas de Juegos:</strong> Administré bases de datos MS SQL para modelos de probabilidad y proyecciones de juego; lideré pruebas controladas de sistemas y supervisé operaciones seguras de equipos de entretenimiento en red nacional de tiendas."><strong>Games Systems Data Analyst:</strong> Managed MS SQL databases for probability models and game projections; led controlled system testing and supervised secure operations for gaming equipment across national store network.</li>
+        <li data-en="<strong>GIS Developer / Cadcorp Specialist (Diferent public sectors):</strong> Built specialized GIS applications in Visual Basic and Cadcorp; integrated spatial databases; delivered topological data standards training nationally and internationally." data-es="<strong>Desarrolladora GIS / Especialista Cadcorp (Diferentes sectores públicos):</strong> Construí aplicaciones GIS especializadas en Visual Basic y Cadcorp; integré bases de datos espaciales; impartí capacitación en estándares de datos topológicos a nivel nacional e internacional."><strong>GIS Developer / Cadcorp Specialist (Public Sector, Municipalities):</strong> Built specialized GIS applications in Visual Basic and Cadcorp; integrated spatial databases; delivered topological data standards training nationally and internationally.</li>
+        <li data-en="<strong>Technical Support Lead:</strong> Directed nationwide equipment upgrade campaign — <strong>300 units across Mexico in 3 months</strong> — minimizing disruptions and maintaining full audit documentation traceability." data-es="<strong>Líder de Soporte Técnico:</strong> Dirigí campaña nacional de actualización de equipos — <strong>300 unidades en todo México en 1 mes los locales y en 2 meses los sitios foráneos </strong> — minimizando disrupciones y manteniendo trazabilidad completa de documentación para auditoría."><strong>Technical Support Lead (Private International Enterprises):</strong> Directed nationwide equipment upgrade campaign — <strong>300 units across Mexico in 1 month for locals and 2 months for foreing sites</strong> — minimizing disruptions and maintaining full audit documentation traceability.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-tag">Capabilities</span>
+    <h2 class="section-title">Core Skills & Tools</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-block">
+      <div class="skill-block-title">Delivery & Leadership</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Technology Delivery Management</span>
+        <span class="skill-tag">Digital Transformation</span>
+        <span class="skill-tag">Operational Excellence</span>
+        <span class="skill-tag">Cross-functional Team Leadership</span>
+        <span class="skill-tag">Stakeholder Management</span>
+        <span class="skill-tag">Scope & Change Control</span>
+        <span class="skill-tag">Risk Management</span>
+        <span class="skill-tag">Budget & Resource Planning</span>
+        <span class="skill-tag">Executive Reporting</span>
+        <span class="skill-tag">Vendor Management</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title">Methodologies & Frameworks</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Agile / Scrum</span>
+        <span class="skill-tag">Waterfall</span>
+        <span class="skill-tag">Hybrid Delivery</span>
+        <span class="skill-tag">Full SDLC Management</span>
+        <span class="skill-tag">SMART Goal Setting</span>
+        <span class="skill-tag">SWOT Analysis</span>
+        <span class="skill-tag">Business Process Automation</span>
+        <span class="skill-tag">Requirements Engineering</span>
+        <span class="skill-tag">QA / UAT Validation</span>
+        <span class="skill-tag">Change Management</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title" data-en="Project Management Tools" data-es="Herramientas de Gestión de Proyectos">Project Management Tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Jira</span>
+        <span class="skill-tag">Asana</span>
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">Google Workspace</span>
+        <span class="skill-tag">Microsoft 365 Suite</span>
+        <span class="skill-tag">Adobe Suite</span>
+        <span class="skill-tag">UI/UX Mockup Design</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title">Data & Analytics</div>
+      <div class="skill-tags">
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">MS SQL Server</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">Google Data Studio</span>
+        <span class="skill-tag">Excel (Advanced)</span>
+        <span class="skill-tag">Data Governance</span>
+        <span class="skill-tag">KPI Dashboard Design</span>
+        <span class="skill-tag">PostGIS / QGIS</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title">Technology & Development</div>
+      <div class="skill-tags">
+        <span class="skill-tag">HTML5 / CSS3 / JavaScript</span>
+        <span class="skill-tag">Visual Basic / VBA</span>
+        <span class="skill-tag">PHP / MySQL</span>
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">Cadcorp GIS</span>
+        <span class="skill-tag">Leaflet.js</span>
+        <span class="skill-tag">Web Application Delivery</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title" data-en="Domain Expertise" data-es="Expertise por Dominio">Domain Expertise</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Fintech Portals</span>
+        <span class="skill-tag">Banking / ATM Systems</span>
+        <span class="skill-tag">GIS / Geospatial Intelligence</span>
+        <span class="skill-tag">Cadastral Systems</span>
+        <span class="skill-tag">Government Digital Services</span>
+        <span class="skill-tag">Energy Sector </span>
+        <span class="skill-tag">High-Availability DB Environments</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:2.5rem;">
+    <div class="section-header" style="margin-bottom:1.2rem;">
+      <span class="section-tag" data-en="Languages" data-es="Idiomas">Languages</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="lang-row">
+      <div class="lang-item">
+        <span class="lang-name">Spanish</span>
+        <span class="lang-level" data-en="Native" data-es="Nativo">Native</span>
+      </div>
+      <div class="lang-item">
+        <span class="lang-name">English</span>
+        <span class="lang-level" data-en="Advanced · Professional Working" data-es="Avanzado · Uso Profesional">Advanced · Professional Working</span>
+      </div>
+      <div class="lang-item">
+        <span class="lang-name">French</span>
+        <span class="lang-level" data-en="Intermediate" data-es="Intermedio">Intermediate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header">
+    <span class="section-tag" data-en="Academic" data-es="Académico">Academic</span>
+    <h2 class="section-title" data-en="Education" data-es="Educación">Education</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="edu-grid" style="margin-bottom:3rem;">
+    <div class="edu-card">
+      <div class="edu-degree" data-en="Master of Science in Multimedia Electronics" data-es="Maestría en Ciencias en Electrónica Multimedia">Master of Science in Multimedia Electronics</div>
+      <div class="edu-school">Universidad Simón Bolívar</div>
+      <div class="edu-period" data-en="Mexico City · 2006 – 2008" data-es="Ciudad de México · 2006 – 2008">Mexico City · 2006 – 2008</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree" data-en="Bachelor of Science in Systems Engineering" data-es="Ingeniería en Sistemas Computacionales">Bachelor of Science in Systems Engineering</div>
+      <div class="edu-school">Universidad Simón Bolívar</div>
+      <div class="edu-period" data-en="Mexico City · 2002 – 2006" data-es="Ciudad de México · 2002 – 2006">Mexico City · 2002 – 2006</div>
+    </div>
+  </div>
+
+  <div class="section-header" style="margin-bottom:1.5rem;">
+    <span class="section-tag" data-en="Certifications" data-es="Certificaciones">Certifications</span>
+    <h2 class="section-title" data-en="Continuous Learning" data-es="Aprendizaje Continuo">Continuous Learning</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="cert-list">
+    <div class="cert-item">
+      <span class="cert-year" data-en="Current" data-es="Actual">Current</span>
+      <div class="cert-name">
+        <strong>Project Administration Course</strong>
+        <span data-en="ITESM (Instituto Tecnológico y de Estudios Superiores de Monterrey) · In progress" data-es="ITESM (Instituto Tecnológico y de Estudios Superiores de Monterrey) · En curso">ITESM (Instituto Tecnológico y de Estudios Superiores de Monterrey) · In progress</span>
+      </div>
+    </div>
+    <div class="cert-item">
+      <span class="cert-year">2023</span>
+      <div class="cert-name">
+        <strong data-en="The Project Management Course: Beginner to PROject Manager" data-es="Curso Completo de Gestión de Proyectos: De Principiante a PROyect Manager">The Project Management Course: Beginner to PROject Manager</strong>
+        <span data-en="Udemy · Project management, engineering &amp; planning methodologies" data-es="Udemy · Gestión de proyectos, ingeniería y metodologías de planeación">Udemy · Project management, engineering &amp; planning methodologies</span>
+      </div>
+    </div>
+    <div class="cert-item">
+      <span class="cert-year">2023</span>
+      <div class="cert-name">
+        <strong>DBA PostgreSQL</strong>
+        <span data-en="Udemy · Database administration, optimization &amp; security" data-es="Udemy · Administración, optimización y seguridad de bases de datos">Udemy · Database administration, optimization &amp; security</span>
+      </div>
+    </div>
+    <div class="cert-item">
+      <span class="cert-year">2022</span>
+      <div class="cert-name">
+        <strong>Power BI Complete</strong>
+        <span data-en="Udemy · Business intelligence, KPI dashboards &amp; data visualization" data-es="Udemy · Inteligencia de negocios, dashboards de KPIs y visualización de datos">Udemy · Business intelligence, KPI dashboards &amp; data visualization</span>
+      </div>
+    </div>
+    <div class="cert-item">
+      <span class="cert-year">2021</span>
+      <div class="cert-name">
+        <strong>Google Data Studio · GIS Data on the Web with Leaflet · Spatial Databases with PostGIS &amp; QGIS · Excel &amp; Power BI · Web Programming for GIS</strong>
+        <span data-en="Udemy · Data analytics, geospatial web development &amp; BI tools" data-es="Udemy · Analítica de datos, desarrollo web geoespacial y herramientas de BI">Udemy · Data analytics, geospatial web development &amp; BI tools</span>
+      </div>
+    </div>
+    <div class="cert-item">
+      <span class="cert-year">2020</span>
+      <div class="cert-name">
+        <strong data-en="Full-Stack Web Development (HTML5, CSS3, JS, Ajax, PHP, MySQL) · Visual Studio Code · Productive Programmer in VS Code" data-es="Desarrollo Web Full-Stack (HTML5, CSS3, JS, Ajax, PHP, MySQL) · Visual Studio Code · Programador Productivo en VS Code">Full-Stack Web Development (HTML5, CSS3, JS, Ajax, PHP, MySQL) · Visual Studio Code · Productive Programmer in VS Code</strong>
+        <span data-en="Udemy · Web development &amp; developer productivity tooling" data-es="Udemy · Desarrollo web y herramientas de productividad para desarrolladores">Udemy · Web development &amp; developer productivity tooling</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-tag" data-en="Connect" data-es="Conectar">Connect</span>
+    <h2 class="section-title" data-en="Get in Touch" data-es="Contáctame">Get in Touch</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="contact-wrapper">
+    <div>
+      <p class="contact-intro">
+        Actively seeking <strong style="color:var(--text-primary);">senior remote roles</strong> in fintech, govtech, or consulting — focused on technology delivery, program management, and digital transformation. If you're looking for a delivery leader who bridges business and technology to drive measurable results, I'd love to connect.
+      </p>
+      <p class="contact-intro">Connect on LinkedIn:</p>
+      <!-- CambiaAqui: Reemplaza YOUR-PROFILE con tu URL de LinkedIn (ej: linkedin.com/in/tu-nombre) -->
+      <a href="www.linkedin.com/in/a-haydeé-corona-151978b8" target="_blank" class="linkedin-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn Profile
+      </a>
+      <p class="contact-note">Your message goes directly to my inbox — no personal contact details are exposed on this site.</p>
+    </div>
+
+    <form class="contact-form" id="contactForm">
+      <div class="form-group">
+        <label for="cf-name">Full name</label>
+        <input type="text" id="cf-name" name="name" placeholder="Your name" required>
+      </div>
+      <div class="form-group">
+        <label for="cf-email">Email address</label>
+        <input type="email" id="cf-email" name="email" placeholder="your@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="cf-subject">Subject</label>
+        <select id="cf-subject" name="subject">
+          <option value="Job Opportunity">Job Opportunity</option>
+          <option value="Freelance / Project">Freelance / Project</option>
+          <option value="Collaboration">Collaboration</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="cf-msg">Message</label>
+        <textarea id="cf-msg" name="message" placeholder="Tell me about the opportunity or how I can help..." required></textarea>
+      </div>
+      <button type="submit" class="form-submit" id="submitBtn">Send message</button>
+      <div class="form-message" id="formMsg"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Dulcinea Quijano &nbsp;·&nbsp; Technology Delivery Manager &nbsp;·&nbsp; <a href="#contact">Contact</a></p>
+</footer>
+
+<script>
+  const titles = [
+    "Business & Digital Transformation",
+    "Operational Excellence Leader",
+    "Full SDLC Delivery Management",
+    "Fintech & Banking Tech PM",
+    "Cross-functional Team Leader"
+  ];
+  let ti = 0, ci = 0, deleting = false;
+  const el = document.getElementById('typewriter');
+
+  (function type() {
+    const cur = titles[ti];
+    el.textContent = deleting ? cur.slice(0, ci - 1) : cur.slice(0, ci + 1);
+    deleting ? ci-- : ci++;
+    if (!deleting && ci === cur.length) { deleting = true; setTimeout(type, 2000); return; }
+    if (deleting && ci === 0) { deleting = false; ti = (ti + 1) % titles.length; }
+    setTimeout(type, deleting ? 40 : 70);
+  })();
+
+  // ── BILINGUAL SYSTEM ──────────────────────────────────────────────
+  let currentLang = 'en';
+
+  const translations = {
+    en: {
+      eyebrow: 'Technology Delivery Manager',
+      heroName: 'Dulcinea<br>Quijano',
+      heroSummary: 'Technology Delivery Leader with <strong>8+ years</strong> connecting business and technology across <strong>fintech, banking, and geospatial systems</strong>. I lead multidisciplinary teams through the full SDLC — from requirements to deployment and maintenance — delivering solutions that generate measurable efficiency and <strong>sustainable business value</strong>. Currently seeking senior remote roles in <strong>fintech, govtech, or consulting</strong>.',
+      ctaPrimary: 'Get in touch',
+      ctaSecondary: 'View experience',
+      stat1Label: 'Years delivering tech', stat1Detail: 'Fintech, banking, GIS & gov',
+      stat2Label: 'Faster forecasting', stat2Detail: 'ATM cash replenishment cycle cut in half',
+      stat3Label: 'Months to delivery', stat3Detail: 'Project cycle accelerated from 5 months to 3',
+      stat4Label: 'Team synergy', stat4Detail: 'Cross-functional cohesion uplift',
+      aboutTag: 'Profile', aboutTitle: 'About',
+      aboutP1: 'I am a Technology Delivery Leader focused on <strong>Business & Digital Transformation</strong> and <strong>Operational Excellence</strong>, with more than 8 years of experience connecting business and technology. Specialized in <strong>fintech and banking</strong>, I lead multidisciplinary teams to deliver end-to-end projects through the full SDLC — from requirements gathering and design, through development, testing, and deployment, to ongoing maintenance.',
+      aboutP2: 'In recent fintech and ATM portal projects, my teams achieved: <strong>50% reduction in forecast generation time</strong>, doubled cash-runout anticipation from 2 to 4 days, <strong>70% fewer service report errors</strong>, 40% improvement in device installation tracking, and project delivery accelerated from 5 months to <strong>3 months</strong>.',
+      aboutP3: 'My technical foundation as a <strong>PostgreSQL DBA</strong> in banking environments and as a <strong>GIS developer</strong> for government projects gives me the credibility to engage deeply with engineering teams while maintaining strategic alignment with executive stakeholders. I manage budgets of MXN 80K–120K/month, resource planning, cost control, and vendor communication with equal confidence.',
+      aboutP4: 'I lead with ethics, respect, and responsibility — building the trust and synergy that transforms vision into strategy. Currently seeking <strong>senior remote roles in fintech, govtech, or consulting</strong> where technology delivery creates lasting organizational value.',
+      pillar1Title: 'End-to-End SDLC Ownership', pillar1Desc: 'Requirements gathering → design → development → QA → deployment → maintenance. Full lifecycle accountability from day one to go-live and beyond.',
+      pillar2Title: 'Business–Technology Translation', pillar2Desc: 'Converting ambiguous business needs into precise technical specifications — reducing rework, accelerating delivery, and ensuring solutions meet real user needs.',
+      pillar3Title: 'Operational Excellence & Data Governance', pillar3Desc: 'Driving process automation, KPI frameworks, and data quality initiatives that reduce errors, improve traceability, and enable data-driven decisions.',
+      pillar4Title: 'Executive Stakeholder Management', pillar4Desc: 'Structured reporting, risk communication, and scope control that keep leadership informed and projects on track — even through change.',
+      expTag: 'Career', expTitle: 'Professional Experience',
+      skillsTag: 'Capabilities', skillsTitle: 'Core Skills & Tools',
+      langTag: 'Languages',
+      eduTag: 'Academic', eduTitle: 'Education',
+      certTag: 'Certifications', certTitle: 'Continuous Learning',
+      contactTag: 'Connect', contactTitle: 'Get in Touch',
+      contactIntro: 'Actively seeking <strong>senior remote roles</strong> in fintech, govtech, or consulting — focused on technology delivery, program management, and digital transformation. If you\'re looking for a delivery leader who bridges business and technology to drive measurable results, I\'d love to connect.',
+      contactLinkedIn: 'Connect on LinkedIn:',
+      contactNote: 'Your message goes directly to my inbox — no personal contact details are exposed on this site.',
+      linkedinBtn: 'LinkedIn Profile',
+      formName: 'Full name', formNamePH: 'Your name',
+      formEmail: 'Email address', formEmailPH: 'your@email.com',
+      formSubject: 'Subject',
+      formOpt1: 'Job Opportunity', formOpt2: 'Freelance / Project', formOpt3: 'Collaboration', formOpt4: 'Other',
+      formMsg: 'Message', formMsgPH: 'Tell me about the opportunity or how I can help...',
+      formBtn: 'Send message',
+      footerText: '© 2026 Dulcinea Quijano · Technology Delivery Manager ·',
+      footerLink: 'Contact'
+    },
+    es: {
+      eyebrow: 'Líder en Entrega Tecnológica',
+      heroName: 'Dulcinea<br>Quijano',
+      heroSummary: 'Líder en Entrega Tecnológica con <strong>8+ años</strong> conectando negocio y tecnología en <strong>fintech, banca y sistemas geoespaciales</strong>. Dirijo equipos multidisciplinarios a través del ciclo completo de SDLC — desde requerimientos hasta despliegue y mantenimiento — entregando soluciones que generan eficiencia medible y <strong>valor empresarial sostenible</strong>. Actualmente buscando roles senior remotos en <strong>fintech, govtech o consultoría</strong>.',
+      ctaPrimary: 'Contáctame',
+      ctaSecondary: 'Ver experiencia',
+      stat1Label: 'Años entregando tecnología', stat1Detail: 'Fintech, banca, GIS y gobierno',
+      stat2Label: 'Pronóstico más rápido', stat2Detail: 'Ciclo de reabastecimiento ATM reducido a la mitad',
+      stat3Label: 'Meses de entrega', stat3Detail: 'Ciclo de proyecto acelerado de 5 meses a 3',
+      stat4Label: 'Sinergia de equipo', stat4Detail: 'Mejora en cohesión interfuncional',
+      aboutTag: 'Perfil', aboutTitle: 'Acerca de mí',
+      aboutP1: 'Soy una Líder en Entrega Tecnológica enfocada en <strong>Transformación Digital y de Negocio</strong> y <strong>Excelencia Operativa</strong>, con más de 8 años de experiencia conectando negocio y tecnología. Especializada en <strong>fintech y banca</strong>, dirijo equipos multidisciplinarios para entregar proyectos end-to-end a través del ciclo completo de SDLC — desde levantamiento de requerimientos y diseño, hasta desarrollo, pruebas, despliegue y mantenimiento continuo.',
+      aboutP2: 'En proyectos recientes de portales fintech y ATM, mis equipos lograron: <strong>reducción del 50% en tiempo de generación de pronósticos</strong>, duplicación de anticipación de desabasto de efectivo de 2 a 4 días, <strong>70% menos errores en reportes de servicio</strong>, 40% de mejora en rastreo de instalaciones de dispositivos financieros, y entrega de proyectos acelerada de 5 meses a <strong>3 meses</strong>.',
+      aboutP3: 'Mi base técnica como <strong>DBA PostgreSQL</strong> en entornos bancarios y como <strong>desarrolladora GIS</strong> en proyectos de gobierno me permite interactuar con credibilidad con equipos de ingeniería, manteniendo simultáneamente alineación estratégica con ejecutivos y directivos. Gestiono presupuestos de MXN 80K–120K/mes, planeación de recursos, control de costos y comunicación con proveedores.',
+      aboutP4: 'Lidero con ética, respeto y responsabilidad — construyendo la confianza y sinergia que transforma la visión en estrategia. Actualmente busco <strong>roles senior remotos en fintech, govtech o consultoría</strong> donde la entrega tecnológica cree valor organizacional duradero.',
+      pillar1Title: 'Ownership del Ciclo SDLC Completo', pillar1Desc: 'Requerimientos → diseño → desarrollo → QA → despliegue → mantenimiento. Responsabilidad total del ciclo de vida desde el día uno hasta go-live y más allá.',
+      pillar2Title: 'Traducción Negocio–Tecnología', pillar2Desc: 'Convertir necesidades de negocio ambiguas en especificaciones técnicas precisas — reduciendo retrabajo, acelerando entrega y asegurando que las soluciones respondan a necesidades reales.',
+      pillar3Title: 'Excelencia Operativa y Gobernanza de Datos', pillar3Desc: 'Impulso de automatización de procesos, marcos de KPIs e iniciativas de calidad de datos que reducen errores, mejoran trazabilidad y habilitan decisiones basadas en datos.',
+      pillar4Title: 'Gestión de Stakeholders Ejecutivos', pillar4Desc: 'Reporteo estructurado, comunicación de riesgos y control de alcance que mantienen a la dirección informada y los proyectos en tiempo — incluso ante cambios.',
+      expTag: 'Trayectoria', expTitle: 'Experiencia Profesional',
+      skillsTag: 'Capacidades', skillsTitle: 'Habilidades y Herramientas',
+      langTag: 'Idiomas',
+      eduTag: 'Académico', eduTitle: 'Educación',
+      certTag: 'Certificaciones', certTitle: 'Aprendizaje Continuo',
+      contactTag: 'Conectar', contactTitle: 'Contáctame',
+      contactIntro: 'Busco activamente <strong>roles senior remotos</strong> en fintech, govtech o consultoría — enfocados en entrega tecnológica, gestión de programas y transformación digital. Si buscas una líder de entrega que conecte negocio y tecnología para generar resultados medibles, me encantaría conversar.',
+      contactLinkedIn: 'Conecta en LinkedIn:',
+      contactNote: 'Tu mensaje llega directamente a mi bandeja de entrada — ningún dato de contacto personal se expone en este sitio.',
+      linkedinBtn: 'Perfil de LinkedIn',
+      formName: 'Nombre completo', formNamePH: 'Tu nombre',
+      formEmail: 'Correo electrónico', formEmailPH: 'tu@correo.com',
+      formSubject: 'Asunto',
+      formOpt1: 'Oportunidad laboral', formOpt2: 'Proyecto freelance', formOpt3: 'Colaboración', formOpt4: 'Otro',
+      formMsg: 'Mensaje', formMsgPH: 'Cuéntame sobre la oportunidad o cómo puedo ayudarte...',
+      formBtn: 'Enviar mensaje',
+      footerText: '© 2026 • A H C V • · Líder en Entrega Tecnológica ·', // CambiaAqui: nombre en footer ES
+      footerLink: 'Contacto'
+    }
+  };
+
+  function toggleLang() {
+    currentLang = currentLang === 'en' ? 'es' : 'en';
+    const t = translations[currentLang];
+    const btn = document.getElementById('langBtn');
+    btn.textContent = currentLang === 'en' ? 'EN / ES' : 'ES / EN';
+
+    // Nav links
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      const key = currentLang === 'en' ? 'en' : 'es';
+      if (a.dataset[key]) a.textContent = a.dataset[key];
+    });
+
+    // Hero
+    document.querySelector('.hero-eyebrow').textContent = t.eyebrow;
+    document.querySelector('.hero-summary').innerHTML = t.heroSummary;
+    document.querySelector('.hero-cta .btn-primary').textContent = t.ctaPrimary;
+    document.querySelector('.hero-cta .btn-outline').textContent = t.ctaSecondary;
+
+    // Stats
+    const statCells = document.querySelectorAll('.stat-cell');
+    const statKeys = [
+      [t.stat1Label, t.stat1Detail],
+      [t.stat2Label, t.stat2Detail],
+      [t.stat3Label, t.stat3Detail],
+      [t.stat4Label, t.stat4Detail]
+    ];
+    statCells.forEach((cell, i) => {
+      if (statKeys[i]) {
+        cell.querySelector('.stat-label').textContent = statKeys[i][0];
+        cell.querySelector('.stat-detail').textContent = statKeys[i][1];
+      }
+    });
+
+    // About section tag + title
+    const aboutSection = document.getElementById('about');
+    aboutSection.querySelector('.section-tag').textContent = t.aboutTag;
+    aboutSection.querySelector('.section-title').textContent = t.aboutTitle;
+    const aboutPs = aboutSection.querySelectorAll('.about-text p');
+    if (aboutPs[0]) aboutPs[0].innerHTML = t.aboutP1;
+    if (aboutPs[1]) aboutPs[1].innerHTML = t.aboutP2;
+    if (aboutPs[2]) aboutPs[2].innerHTML = t.aboutP3;
+    if (aboutPs[3]) aboutPs[3].innerHTML = t.aboutP4;
+    const pillars = aboutSection.querySelectorAll('.pillar-card');
+    const pillarData = [
+      [t.pillar1Title, t.pillar1Desc],
+      [t.pillar2Title, t.pillar2Desc],
+      [t.pillar3Title, t.pillar3Desc],
+      [t.pillar4Title, t.pillar4Desc]
+    ];
+    pillars.forEach((p, i) => {
+      if (pillarData[i]) {
+        p.querySelector('.pillar-title').textContent = pillarData[i][0];
+        p.querySelector('.pillar-desc').textContent = pillarData[i][1];
+      }
+    });
+
+    // Translate all elements with data-en / data-es (experience bullets, roles, companies, badges, impact descs, nav, etc.)
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const val = currentLang === 'en' ? el.dataset.en : el.dataset.es;
+      if (val !== undefined) el.innerHTML = val;
+    });
+
+    // Experience section (data-en/data-es handles bullets; section tag/title also covered above)
+    const expSection = document.getElementById('experience');
+
+    // Skills
+    const skillsSection = document.getElementById('skills');
+    skillsSection.querySelector('.section-tag').textContent = t.skillsTag;
+    skillsSection.querySelector('.section-title').textContent = t.skillsTitle;
+    skillsSection.querySelector('.section-header:last-of-type .section-tag') && 
+      (skillsSection.querySelectorAll('.section-tag')[1].textContent = t.langTag);
+
+    // Education
+    const eduSection = document.getElementById('education');
+    eduSection.querySelector('.section-tag').textContent = t.eduTag;
+    eduSection.querySelector('.section-title').textContent = t.eduTitle;
+    const eduTags = eduSection.querySelectorAll('.section-tag');
+    if (eduTags[1]) eduTags[1].textContent = t.certTag;
+    const eduTitles = eduSection.querySelectorAll('.section-title');
+    if (eduTitles[1]) eduTitles[1].textContent = t.certTitle;
+
+    // Contact
+    const contactSection = document.getElementById('contact');
+    contactSection.querySelector('.section-tag').textContent = t.contactTag;
+    contactSection.querySelector('.section-title').textContent = t.contactTitle;
+    const contactIntroEls = contactSection.querySelectorAll('.contact-intro');
+    if (contactIntroEls[0]) contactIntroEls[0].innerHTML = t.contactIntro;
+    if (contactIntroEls[1]) contactIntroEls[1].textContent = t.contactLinkedIn;
+    contactSection.querySelector('.contact-note').textContent = t.contactNote;
+    // CambiaAqui: Si cambias el href del LinkedIn, actualiza también esta línea
+    contactSection.querySelector('.linkedin-link').innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> ${t.linkedinBtn}`;
+
+    // Form labels & placeholders
+    document.querySelector('label[for="cf-name"]').textContent = t.formName;
+    document.getElementById('cf-name').placeholder = t.formNamePH;
+    document.querySelector('label[for="cf-email"]').textContent = t.formEmail;
+    document.getElementById('cf-email').placeholder = t.formEmailPH;
+    document.querySelector('label[for="cf-subject"]').textContent = t.formSubject;
+    const opts = document.getElementById('cf-subject').options;
+    opts[0].text = t.formOpt1; opts[1].text = t.formOpt2; opts[2].text = t.formOpt3; opts[3].text = t.formOpt4;
+    document.querySelector('label[for="cf-msg"]').textContent = t.formMsg;
+    document.getElementById('cf-msg').placeholder = t.formMsgPH;
+    document.getElementById('submitBtn').textContent = t.formBtn;
+
+    // Footer
+    const footer = document.querySelector('footer p');
+    footer.innerHTML = `${t.footerText} <a href="#contact">${t.footerLink}</a>`;
+
+    // html lang attribute
+    document.documentElement.lang = currentLang;
+  }
+  // ── END BILINGUAL SYSTEM ───────────────────────────────────────────
+
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const msg = document.getElementById('formMsg');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    msg.style.display = 'none';
+    try {
+      const res = await fetch('https://formspree.io/f/xovdgkbz', {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { Accept: 'application/json' }
+      });
+      if (res.ok) {
+        msg.textContent = '✓ Message sent. I\'ll be in touch shortly.';
+        msg.className = 'form-message success';
+        this.reset();
+      } else { throw new Error(); }
+    } catch {
+      msg.textContent = '✗ Something went wrong. Please try again or reach out via LinkedIn.';
+      msg.className = 'form-message error';
+    }
+    msg.style.display = 'block';
+    btn.textContent = 'Send message';
+    btn.disabled = false;
+  });
+</script>
+</body>
+</html>
